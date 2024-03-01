@@ -4,5 +4,5 @@ WORKDIR /genesys
 COPY package.json .
 RUN npm install
 COPY . .
-EXPOSE 5008
+EXPOSE 
 CMD ["npm", "run", "dev"]

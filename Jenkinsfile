@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container
-                    sh 'docker run -d -p 5008:5008 genesys'
+                    sh 'docker run -d -p 5000:5000 genesys'
                 }
             }
         }
