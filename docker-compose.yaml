@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  genesys:
+    build: .
+    container_name: genesys_container
+    ports:
+      - "5008:5008"
+    volumes:
+      - .:/genesys

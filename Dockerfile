@@ -1,7 +1,8 @@
 FROM node
-WORKDIR /app
+RUN npm install -g nodemon
+WORKDIR /genesys
 COPY package.json .
 RUN npm install
 COPY . .
-EXPOSE 3000
-CMD ["node", "app.js"]
+EXPOSE 5008
+CMD ["npm", "run", "dev"]
