@@ -1,15 +1,11 @@
 pipeline {
     agent any
 
-    // Define timestamp outside of stages
-    def timestamp
-
     stages {
         stage('Build') {
             steps {
                 script {
-                    // Set the timestamp
-                    timestamp = new Date().format("yyyyMMddHHmmss")
+                    def timestamp = new Date().format("yyyyMMddHHmm")
                     def imageTag = "genesys:${timestamp}"
                     // Build the Docker image
                     sh "docker build . -t ${imageTag}"
@@ -20,9 +16,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Use the same timestamp from the 'Build' stage
+                    def timestamp = new Date().format("yyyyMMddHHmm")
                     def imageTag = "genesys:${timestamp}"
-
                     // Delete previous Docker container
                     sh 'docker stop genesys_container || true'
                     // Run the Docker container
