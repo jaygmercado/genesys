@@ -1,12 +1,14 @@
 pipeline {
     agent any
+    environment {
+        TIMESTAMP = new Date().format("yyyyMMddHHmmss")
+    }
 
     stages {
         stage('Build') {
             steps {
                 script {
-                    def timestamp = new Date().format("yyyyMMddHHmm")
-                    def imageTag = "genesys:${timestamp}"
+                    def imageTag = "genesys:${TIMESTAMP}"
                     // Build the Docker image
                     sh "docker build . -t ${imageTag}"
                 }
@@ -16,11 +18,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    def timestamp = new Date().format("yyyyMMddHHmm")
-                    def imageTag = "genesys:${timestamp}"
                     // Delete previous Docker container
                     sh 'docker stop genesys_container || true'
-                    // Run the Docker container
+                    // Run the Docker container.
+                    def imageTag = "genesys:${TIMESTAMP}"
                     sh "docker run -d --rm -p 5008:5008 --name genesys_container ${imageTag}"
                 }
             }
