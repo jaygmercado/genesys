@@ -17,7 +17,7 @@ pipeline {
                     // Delete previous Docker container
                     sh 'docker stop genesys_container || true'
                     // Run the Docker container
-                    sh 'docker run -d --rm -p 5008:5008 genesys_container'
+                    sh 'docker run -d --rm -p 5008:5008 --name genesys_container genesys'
                 }
             }
         }
