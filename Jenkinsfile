@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    def timestamp = new Date().format("yyyyMMddHHmmss")
-    def imageTag = "genesys:${timestamp}"
 
     stages {
-    stage('Build') {
+        stage('Build') {
             steps {
                 script {
+                    def timestamp = new Date().format("yyyyMMddHHmmss")
+                    def imageTag = "genesys:${timestamp}"
                     // Build the Docker image
                     sh "docker build . -t ${imageTag}"
                 }
