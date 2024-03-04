@@ -6,7 +6,9 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build . -t genesys:latest'
+                    def timestamp = new Date().format("yyyyMMddHHmmss")
+                    def imageTag = "genesys:${timestamp}"
+                    sh "docker build . -t ${imageTag}"
                 }
             }
         }
