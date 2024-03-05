@@ -1,13 +1,10 @@
 version: "3.8"
 services:
   api:
-    build: 
-      context: .
-      args:
-        - BUILD_TIMESTAMP=$(date '+%Y%m%d%H%M%S')
+    build: .
     container_name: genesys_container
     ports:
       - "5008:5008"
     volumes:
       - .:/genesys
-    image: genesys:${BUILD_TIMESTAMP}
+    image: genesys
