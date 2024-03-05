@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
       res.status(500).send("Error fetching public IP address");
     } else {
       // Send the public IP address as the response
-      res.status(200).send(`Public IP Address: <strong>${publicIpAddress}<strong>!`);
+      res.status(200).send(`My Public IP Address: <strong>${publicIpAddress}<strong>!`);
     }
   });
 });

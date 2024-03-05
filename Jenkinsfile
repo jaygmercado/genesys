@@ -22,7 +22,8 @@ pipeline {
                     sh 'docker compose down || true'
                     // Run the Docker container.
                     def imageTag = "genesys:${TIMESTAMP}"
-                    sh "docker run -d --rm -p 5008:5008 --name genesys_container ${imageTag}"
+                    // sh "docker run -d --rm -p 5008:5008 --name genesys_container ${imageTag}"
+                    sh "docker compose up -d"
                 }
             }
         }
