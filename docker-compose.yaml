@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  genesys:
+  genesys_container:
     build: .
     container_name: genesys_container
     ports:
