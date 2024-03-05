@@ -6,7 +6,6 @@ pipeline {
             steps {
                 script {
                     sh 'docker compose down || true'
-                    sleep 10 // Add a delay of 10 seconds (adjust as needed)
                 }
             }
         }
