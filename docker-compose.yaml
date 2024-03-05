@@ -1,10 +1,12 @@
 version: "3.8"
 services:
-  api:
+  genesys:
     build: .
     container_name: genesys_container
     ports:
       - "5008:5008"
     volumes:
       - .:/genesys
-    image: genesys
+    image: genesys:latest
+    environment:
+      - NODE_ENV=${NODE_ENV:-local}
