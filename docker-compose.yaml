@@ -4,7 +4,7 @@ services:
     build: 
       context: .
       args:
-        - BUILD_TIMESTAMP=${BUILD_TIMESTAMP}
+        - BUILD_TIMESTAMP=$(date '+%Y%m%d%H%M%S')
     container_name: genesys_container
     ports:
       - "5008:5008"
