@@ -2,11 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Deploy') {
+        stage('Stop and Delete Container') {
             steps {
                 script {
-                    // Delete previous Docker container
                     sh 'docker compose down || true'
+                }
+            }
+        }
+
+        stage('Build and Start Container') {
+            steps {
+                script {
                     sh "NODE_ENV=prod docker compose up -d --build"
                 }
             }
