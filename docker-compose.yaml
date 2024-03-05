@@ -1,9 +1,13 @@
 version: "3.8"
 services:
-  genesys_container:
-    build: .
+  api:
+    build: 
+      context: .
+      args:
+        - BUILD_TIMESTAMP=${BUILD_TIMESTAMP}
     container_name: genesys_container
     ports:
       - "5008:5008"
     volumes:
       - .:/genesys
+    image: genesys:${BUILD_TIMESTAMP}
