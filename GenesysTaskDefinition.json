@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:8",
     "containerDefinitions": [
         {
             "name": "genesys",
@@ -9,7 +9,7 @@
             "memoryReservation": 1024,
             "portMappings": [
                 {
-                    "name": "container",
+                    "name": "container-port-protocol",
                     "containerPort": 5008,
                     "hostPort": 5008,
                     "protocol": "tcp",
@@ -22,19 +22,12 @@
             "mountPoints": [],
             "volumesFrom": [],
             "ulimits": [],
-            "systemControls": [],
-            "resourceRequirements": [
-                {
-                    "value": "1",
-                    "type": "GPU"
-                }
-            ]
+            "systemControls": []
         }
     ],
     "family": "GenesysTaskDefinition",
-    "taskRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
-    "revision": 1,
+    "revision": 8,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -43,9 +36,6 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.task-iam-role"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -67,7 +57,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-19T19:25:34.013Z",
+    "registeredAt": "2024-03-19T22:22:22.691Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
