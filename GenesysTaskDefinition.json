@@ -1,0 +1,73 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:1",
+    "containerDefinitions": [
+        {
+            "name": "genesys",
+            "image": "021375450451.dkr.ecr.ap-southeast-1.amazonaws.com/genesys",
+            "cpu": 1024,
+            "memory": 3072,
+            "memoryReservation": 1024,
+            "portMappings": [
+                {
+                    "name": "container",
+                    "containerPort": 5008,
+                    "hostPort": 5008,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "systemControls": [],
+            "resourceRequirements": [
+                {
+                    "value": "1",
+                    "type": "GPU"
+                }
+            ]
+        }
+    ],
+    "family": "GenesysTaskDefinition",
+    "taskRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-03-19T19:25:34.013Z",
+    "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
+    "tags": []
+}
