@@ -6,4 +6,4 @@ RUN npm install
 COPY . .
 EXPOSE 5008
 ENV NODE_ENV=local
-CMD ["npm","run","start"]
+CMD ["node","app.js"]
