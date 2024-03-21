@@ -47,12 +47,6 @@ jobs:
           container-name: genesys
           image: ${{ steps.build-image.outputs.image }}
 
-      - name: Deregister existing Amazon ECS task definition
-        id: deregister-task-def
-        uses: aws-actions/amazon-ecs-deregister-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
