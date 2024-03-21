@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:8",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:15",
     "containerDefinitions": [
         {
             "name": "genesys",
-            "image": "021375450451.dkr.ecr.ap-southeast-1.amazonaws.com/genesys",
+            "image": "021375450451.dkr.ecr.ap-southeast-1.amazonaws.com/genesys:latest",
             "cpu": 1024,
             "memory": 3072,
             "memoryReservation": 1024,
@@ -18,30 +18,43 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "GenesysLogGroup",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
             "systemControls": []
         }
     ],
     "family": "GenesysTaskDefinition",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
-    "revision": 8,
+    "revision": 15,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
             "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
         }
     ],
     "placementConstraints": [],
@@ -57,7 +70,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-19T22:22:22.691Z",
+    "registeredAt": "2024-03-21T00:34:31.548Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
