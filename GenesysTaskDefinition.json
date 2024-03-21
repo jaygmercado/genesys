@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:15",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:19",
     "containerDefinitions": [
         {
             "name": "genesys",
@@ -26,15 +26,14 @@
                     "awslogs-group": "GenesysLogGroup",
                     "awslogs-region": "ap-southeast-1",
                     "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
+                }
             },
             "systemControls": []
         }
     ],
     "family": "GenesysTaskDefinition",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
-    "revision": 15,
+    "revision": 19,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -70,7 +69,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-21T00:34:31.548Z",
+    "registeredAt": "2024-03-21T14:32:46.964Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
