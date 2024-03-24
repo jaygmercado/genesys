@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:24",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:29",
     "containerDefinitions": [
         {
             "name": "genesys",
@@ -9,12 +9,12 @@
             },
             "cpu": 1024,
             "memory": 3072,
-            "memoryReservation": 1024,
+            "memoryReservation": 3072,
             "portMappings": [
                 {
                     "name": "genesys-port-protocol",
                     "containerPort": 5008,
-                    "hostPort": 5008,
+                    "hostPort": 0,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -39,7 +39,8 @@
     ],
     "family": "GenesysTaskDefinition",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
-    "revision": 24,
+    "networkMode": "bridge",
+    "revision": 29,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -75,7 +76,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-21T19:33:34.599Z",
+    "registeredAt": "2024-03-22T17:32:47.748Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
