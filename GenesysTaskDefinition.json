@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:29",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:32",
     "containerDefinitions": [
         {
             "name": "genesys",
-            "image": "docker.io/jaymercado/genesys:latest",
+            "image": "jaymercado/genesys:latest",
             "repositoryCredentials": {
                 "credentialsParameter": "arn:aws:secretsmanager:ap-southeast-1:021375450451:secret:dockerhub-CmyNrK"
             },
-            "cpu": 1024,
-            "memory": 3072,
-            "memoryReservation": 3072,
+            "cpu": 256,
+            "memory": 512,
+            "memoryReservation": 512,
             "portMappings": [
                 {
                     "name": "genesys-port-protocol",
@@ -21,10 +21,9 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
+            "stopTimeout": 2,
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -40,7 +39,7 @@
     "family": "GenesysTaskDefinition",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
     "networkMode": "bridge",
-    "revision": 29,
+    "revision": 32,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -60,7 +59,7 @@
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            "name": "ecs.capability.container-ordering"
         }
     ],
     "placementConstraints": [],
@@ -70,13 +69,13 @@
     "requiresCompatibilities": [
         "EC2"
     ],
-    "cpu": "1024",
-    "memory": "3072",
+    "cpu": "256",
+    "memory": "512",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-22T17:32:47.748Z",
+    "registeredAt": "2024-03-26T23:52:15.045Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
