@@ -13,7 +13,7 @@ jobs:
           command: docker build -t $IMAGE_NAME:latest .
   publish-latest:
     environment:
-      IMAGE_NAME: genesys
+      IMAGE_NAME: jaymercado/genesys
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
