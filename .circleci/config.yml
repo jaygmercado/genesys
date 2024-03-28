@@ -47,7 +47,7 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
-      - run: aws ecs register-task-definition --cli-input-json file:~/project/GenesysTaskDefinition.json
+      - run: aws ecs register-task-definition --cli-input-json file:"~/project/GenesysTaskDefinition.json"
       # - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
 
 workflows:
