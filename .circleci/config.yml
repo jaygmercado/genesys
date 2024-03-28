@@ -3,67 +3,69 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@4.0 # use the AWS CLI orb
 
-executors:
-  docker-publisher:
-    environment:
-      IMAGE_NAME: jaymercado/genesys
-    docker:
-      - image: circleci/buildpack-deps:stretch
+# executors:
+#   docker-publisher:
+#     environment:
+#       IMAGE_NAME: jaymercado/genesys
+#     docker:
+#       - image: circleci/buildpack-deps:stretch
 
 jobs:
-  build:
-    executor: docker-publisher
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Build Docker image
-          command: |
-            docker build -t $IMAGE_NAME:latest .
-      - run:
-          name: Archive Docker image
-          command: docker save -o image.tar $IMAGE_NAME
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./image.tar
-  push-image:
-    executor: docker-publisher
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - setup_remote_docker
-      - run:
-          name: Load archived Docker image
-          command: docker load -i /tmp/workspace/image.tar
-      - run:
-          name: Publish Docker Image to Docker Hub
-          command: |
-            echo "test12345" | docker login -u "jaymercado" --password-stdin
-            docker push $IMAGE_NAME:latest
+  # build:
+  #   executor: docker-publisher
+  #   steps:
+  #     - checkout
+  #     - setup_remote_docker
+  #     - run:
+  #         name: Build Docker image
+  #         command: |
+  #           docker build -t $IMAGE_NAME:latest .
+  #     - run:
+  #         name: Archive Docker image
+  #         command: docker save -o image.tar $IMAGE_NAME
+  #     - persist_to_workspace:
+  #         root: .
+  #         paths:
+  #           - ./image.tar
+  # push-image:
+    # executor: docker-publisher
+    # steps:
+    #   - attach_workspace:
+    #       at: /tmp/workspace
+    #   - setup_remote_docker
+    #   - run:
+    #       name: Load archived Docker image
+    #       command: docker load -i /tmp/workspace/image.tar
+    #   - run:
+    #       name: Publish Docker Image to Docker Hub
+    #       command: |
+    #         echo "test12345" | docker login -u "jaymercado" --password-stdin
+    #         docker push $IMAGE_NAME:latest
   deploy-ecs-service:
+    - checkout
     executor: aws-cli/default
     steps:
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
-      - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
+      - run: ls -al ~/
+      # - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
 
 workflows:
   build-and-deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: circleci-project-setup
-      - push-image:
-          requires:
-            - build
-          filters:
-            branches:
-              only: circleci-project-setup
+      # - build:
+      #     filters:
+      #       branches:
+      #         only: circleci-project-setup
+      # - push-image:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: circleci-project-setup
       - deploy-ecs-service:
-          requires:
-            - push-image
+          # requires:
+          #   - push-image
           filters:
             branches:
               only: circleci-project-setup
