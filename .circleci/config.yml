@@ -43,6 +43,7 @@ jobs:
             echo "test12345" | docker login -u "jaymercado" --password-stdin
             docker push $IMAGE_NAME:latest
   check-env-vars:
+    executor: docker-publisher
     steps:
       - run:
           name: Echo environment variables
