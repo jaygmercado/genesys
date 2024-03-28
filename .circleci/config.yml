@@ -52,7 +52,7 @@ jobs:
           NEW_TASK_DEFINITION=$(echo "GenesysTaskDefinition" | jq --arg IMAGE "jaymercado/genesys:latest" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) |  del(.registeredAt)  | del(.registeredBy)')
           NEW_TASK_INFO=$(aws ecs register-task-definition --region "$AWS_DEFAULT_REGION" --cli-input-json "$NEW_TASK_DEFINITION")
           NEW_REVISION=$(echo $NEW_TASK_INFO | jq '.taskDefinition.revision')
-          aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition:${NEW_REVISION}
+          aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition "GenesysTaskDefinition:${NEW_REVISION}"
 
 workflows:
   build-and-deploy:
