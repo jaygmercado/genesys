@@ -46,8 +46,7 @@ jobs:
     steps:
       - run:
           name: Echo environment variables
-          command: 
-            # Print out the values of relevant environment variables for debugging
+          command: |
             echo "PARAM_AWS_CLI_ACCESS_KEY_ID: $PARAM_AWS_CLI_ACCESS_KEY_ID"
             echo "PARAM_AWS_CLI_SECRET_ACCESS_KEY: $PARAM_AWS_CLI_SECRET_ACCESS_KEY"
             echo "PARAM_AWS_CLI_REGION: $PARAM_AWS_CLI_REGION"
