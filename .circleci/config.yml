@@ -64,8 +64,8 @@ workflows:
       #         only: circleci-project-setup
       - aws-cli-example:
           context: aws
-          requires:
-            - push-image
+          # requires:
+          #   - push-image
           filters:
             branches:
               only: circleci-project-setup
