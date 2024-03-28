@@ -42,19 +42,19 @@ jobs:
           command: |
             echo "test12345" | docker login -u "jaymercado" --password-stdin
             docker push $IMAGE_NAME:latest
-    echo-env-vars:
-      steps:
-        - run:
-            name: Echo environment variables
-            command: 
-              # Print out the values of relevant environment variables for debugging
-              echo "PARAM_AWS_CLI_ACCESS_KEY_ID: $PARAM_AWS_CLI_ACCESS_KEY_ID"
-              echo "PARAM_AWS_CLI_SECRET_ACCESS_KEY: $PARAM_AWS_CLI_SECRET_ACCESS_KEY"
-              echo "PARAM_AWS_CLI_REGION: $PARAM_AWS_CLI_REGION"
-              echo "PARAM_AWS_CLI_PROFILE_NAME: $PARAM_AWS_CLI_PROFILE_NAME"
-              echo "AWS_SESSION_TOKEN: $AWS_SESSION_TOKEN"
-              echo "PARAM_AWS_CLI_CONFIG_DEFAULT_REGION: $PARAM_AWS_CLI_CONFIG_DEFAULT_REGION"
-              echo "PARAM_AWS_CLI_CONFIG_PROFILE_REGION: $PARAM_AWS_CLI_CONFIG_PROFILE_REGION"
+  check-env-vars:
+    steps:
+      - run:
+          name: Echo environment variables
+          command: 
+            # Print out the values of relevant environment variables for debugging
+            echo "PARAM_AWS_CLI_ACCESS_KEY_ID: $PARAM_AWS_CLI_ACCESS_KEY_ID"
+            echo "PARAM_AWS_CLI_SECRET_ACCESS_KEY: $PARAM_AWS_CLI_SECRET_ACCESS_KEY"
+            echo "PARAM_AWS_CLI_REGION: $PARAM_AWS_CLI_REGION"
+            echo "PARAM_AWS_CLI_PROFILE_NAME: $PARAM_AWS_CLI_PROFILE_NAME"
+            echo "AWS_SESSION_TOKEN: $AWS_SESSION_TOKEN"
+            echo "PARAM_AWS_CLI_CONFIG_DEFAULT_REGION: $PARAM_AWS_CLI_CONFIG_DEFAULT_REGION"
+            echo "PARAM_AWS_CLI_CONFIG_PROFILE_REGION: $PARAM_AWS_CLI_CONFIG_PROFILE_REGION"
 
 workflows:
   version: 2
@@ -70,7 +70,7 @@ workflows:
           filters:
             branches:
               only: circleci-project-setup
-      -  echo-env-vars::
+      -  check-env-vars:
           requires:
             - publish-latest
           filters:
