@@ -11,6 +11,7 @@ executors:
       IMAGE_NAME: jaymercado/genesys
     docker:
       - image: circleci/buildpack-deps:stretch
+
 jobs:
   build:
     executor: docker-publisher
@@ -50,6 +51,14 @@ jobs:
           command: |
             echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
             echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
+  aws-cli-example:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: "$AWS_ACCESS_KEY_ID"
+          aws-secret-access-key: "$AWS_SECRET_ACCESS_KEY"
+      - run: echo "Run your code here"
 
 workflows:
   build-and-deploy:
@@ -64,12 +73,5 @@ workflows:
           filters:
             branches:
               only: circleci-project-setup
-      - aws-ecs/deploy_service_update:
-          - aws-cli/setup:
-                aws-access-key-id: "$AWS_ACCESS_KEY_ID"
-                aws-secret-access-key: "$AWS_SECRET_ACCESS_KEY"
-          cluster: GenesysCluster
-          container_image_name_updates: container=genesys,tag=latest
-          family: GenesysService
-          requires:
-            - push-image
+      - aws-cli-example:
+          context: aws
