@@ -1,9 +1,7 @@
 version: 2.1
 
 orbs:
-  aws-ecs: circleci/aws-ecs@4.0 # use the AWS ECS orb
   aws-cli: circleci/aws-cli@4.0 # use the AWS CLI orb
-
 
 executors:
   docker-publisher:
@@ -56,7 +54,8 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          profile-name: example
+          aws_access_key_id: "$AWS_ACCESS_KEY_ID"
+          aws_secret_access_key: "$AWS_SECRET_ACCESS_KEY"
       - run: echo "Run your code here"
 
 workflows:
