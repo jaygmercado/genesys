@@ -42,9 +42,9 @@ jobs:
     #         echo "test12345" | docker login -u "jaymercado" --password-stdin
     #         docker push $IMAGE_NAME:latest
   deploy-ecs-service:
-    - checkout
     executor: aws-cli/default
     steps:
+      - checkout
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
       - run: ls -al ~/
