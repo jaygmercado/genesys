@@ -44,10 +44,9 @@ jobs:
   aws-cli-example:
     executor: aws-cli/default
     steps:
-      - checkout
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
-      - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition
+      - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
 
 workflows:
   build-and-deploy:
