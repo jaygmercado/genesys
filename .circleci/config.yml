@@ -47,7 +47,7 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
-      - run: ls -al ~/
+      - run: ls -al ~/project
       # - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
 
 workflows:
