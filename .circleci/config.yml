@@ -63,6 +63,3 @@ workflows:
           family: 'GenesysService'
           cluster: 'GenesysCluster'
           container-image-name-updates: 'container=genesys,tag=latest'
-      - verify-deployment:
-          requires:
-            - aws-ecs/deploy-service-update
