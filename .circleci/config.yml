@@ -1,4 +1,10 @@
 version: 2.1
+
+orbs:
+  aws-ecs: circleci/aws-ecs@3.2.0 # use the AWS ECS orb
+  aws-cli: circleci/aws-cli@3.1.1 # use the AWS CLI orb
+
+
 executors:
   docker-publisher:
     environment:
@@ -36,9 +42,10 @@ jobs:
           command: |
             echo "test12345" | docker login -u "jaymercado" --password-stdin
             docker push $IMAGE_NAME:latest
+
 workflows:
   version: 2
-  build-master:
+  build-and-deploy:
     jobs:
       - build:
           filters:
@@ -50,3 +57,12 @@ workflows:
           filters:
             branches:
               only: circleci-project-setup
+      - aws-ecs/deploy-service-update: # orb built-in job
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'GenesysService'
+          cluster: 'GenesysCluster'
+          container-image-name-updates: 'container=genesys,tag=latest'
+      - verify-deployment:
+          requires:
+            - aws-ecs/deploy-service-update
