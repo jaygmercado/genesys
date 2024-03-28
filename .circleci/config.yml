@@ -61,7 +61,7 @@ workflows:
           filters:
             branches:
               only: circleci-project-setup
-      - update-ecs-service:
+      - deploy-ecs-service:
           requires:
             - push-image
           filters:
