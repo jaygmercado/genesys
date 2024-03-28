@@ -3,12 +3,12 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@4.0 # use the AWS CLI orb
 
-# executors:
-#   docker-publisher:
-#     environment:
-#       IMAGE_NAME: jaymercado/genesys
-#     docker:
-#       - image: circleci/buildpack-deps:stretch
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: jaymercado/genesys
+    docker:
+      - image: circleci/buildpack-deps:stretch
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
           command: |
             echo "test12345" | docker login -u "jaymercado" --password-stdin
             docker push $IMAGE_NAME:latest
-  update-ecs-service:
+  deploy-ecs-service:
     executor: aws-cli/default
     steps:
       - aws-cli/setup:
