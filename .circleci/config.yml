@@ -47,9 +47,10 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile_name: WEB IDENTITY PROFILE
-      - run: cat ~/project/GenesysTaskDefinition.json
-      # - run: aws ecs register-task-definition --cli-input-json file:"~/project/GenesysTaskDefinition.json"
-      # - run: aws ecs update-service --cluster GenesysCluster --service GenesysService --task-definition GenesysTaskDefinition --force-new-deployment
+      - run: |
+          TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition GenesysTaskDefinition --region "ap-southeast-1")
+          NEW_TASK_DEFINTIION=$(echo $TASK_DEFINITION | jq --arg IMAGE "jaymercado/genesys:latest" '.taskDefinition | .containerDefinitions[0].image = "jaymercado/genesys:latest" | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities)')
+          aws ecs register-task-definition --region "ap-southeast-1" --cli-input-json "$NEW_TASK_DEFINITION"
 
 workflows:
   build-and-deploy:
