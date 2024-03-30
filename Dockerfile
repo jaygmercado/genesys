@@ -1,6 +1,9 @@
 FROM node
+RUN npm install -g nodemon
 WORKDIR /genesys
-COPY . .
+COPY package.json ./
 RUN npm install
-RUN npm run build
-CMD [ "npm", "start" ]
+COPY . .
+EXPOSE 5008
+ENV NODE_ENV=local
+CMD ["node","app.js"]
