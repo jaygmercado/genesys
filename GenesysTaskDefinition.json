@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:32",
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:021375450451:task-definition/GenesysTaskDefinition:39",
     "containerDefinitions": [
         {
             "name": "genesys",
@@ -39,7 +39,7 @@
     "family": "GenesysTaskDefinition",
     "executionRoleArn": "arn:aws:iam::021375450451:role/ecsTaskExecutionRole",
     "networkMode": "bridge",
-    "revision": 32,
+    "revision": 39,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -72,10 +72,10 @@
     "cpu": "256",
     "memory": "512",
     "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
+        "cpuArchitecture": "ARM64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-03-26T23:52:15.045Z",
+    "registeredAt": "2024-03-30T18:08:05.744Z",
     "registeredBy": "arn:aws:iam::021375450451:user/jay-admin",
     "tags": []
 }
