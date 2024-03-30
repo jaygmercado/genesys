@@ -16,7 +16,7 @@ jobs:
           name: "Build"
           command: |
             echo "test12345" | docker login -u "jaymercado" --password-stdin
-            docker build -t jaymercado/genesys:latest .
+            docker build -t jaygmercado/genesys:latest .
             docker push jaygmercado/genesys:latest
       - run:
           name: "Docker Logout"
